@@ -85,3 +85,15 @@ Vue.component('box', {
     },
     template : '#myBox'
 })
+
+const vm = new Vue({
+    data : {
+        n : 0
+    },
+
+    methods : {
+        create() {
+            this.n++;
+        }
+    }
+})
