@@ -56,3 +56,31 @@ class Animator {
         this.start()
     }
 }
+
+const h = window.innerWidth
+const w = window.innerHeight
+const size = Math.min(w, h) / 10
+const animator = new Animator()
+
+Vue.component('box', {
+    data() {
+        return {
+            state : new State()
+            y : 0,
+            x : Math.random() * (w - size)
+        }
+    },
+
+    methods : () {
+        start() {
+            this.state.startUpdating(() => {
+                animator.add(this)
+            })
+        },
+
+        update(cb) {
+            this.y = (h + size) * this.state.scale
+            this.state.update(cb)
+        }
+    }
+})
