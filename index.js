@@ -24,3 +24,35 @@ class State {
         }
     }
 }
+
+class Animator {
+    constructor() {
+        this.components = []
+    }
+
+    update() {
+        const componentLength = this.components.length
+        for (var i = componentLength - 1; i>= 0; i--) {
+            const component = this.components[i]
+            component.update(() => {
+                this.components.splice(i, 1)
+                if (this.components.length == 0) {
+                    clearInterval(this.interval)
+                }
+            })
+        }
+    }
+
+    start() {
+      if (this.components.length == 1) {
+          this.interval = setInterval(() => {
+              this.update()
+          }, 50)
+      }
+    }
+
+    add(component) {
+        this.components.push(component)
+        this.start()
+    }
+}
