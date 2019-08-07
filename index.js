@@ -59,13 +59,13 @@ class Animator {
 
 const h = window.innerWidth
 const w = window.innerHeight
-const size = Math.min(w, h) / 10
+const size = 100
 const animator = new Animator()
 
 Vue.component('box', {
     data() {
         return {
-            state : new State()
+            state : new State(),
             y : 0,
             x : Math.random() * (w - size)
         }
@@ -82,5 +82,6 @@ Vue.component('box', {
             this.y = (h + size) * this.state.scale
             this.state.update(cb)
         }
-    }
+    },
+    template : '#myBox'
 })
