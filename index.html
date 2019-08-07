@@ -3,8 +3,15 @@
         <link rel = "stylesheet" href = "index.css">
     </head>
     <body>
+        <div id = "app">
+            <button class = "centerbutton" @click = "create">
+                Create
+            </button>
+            <box v-for = "i in n">
+            </box>
+        </div>
         <script id = "myBox" type = "template/html">
-            <div class = "box" :style = "left : `${x}px`, top : `${y}px`" @click = "start">
+            <div class = "box" :style = "{left : `${x}px`, top : `${y}px`}" @click = "start">
             </div>
         </script>
         <script src="vue.js">
