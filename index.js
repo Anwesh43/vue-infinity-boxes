@@ -1,4 +1,4 @@
-const scGap = 0.1
+const scGap = 0.05
 class State {
 
     constructor() {
@@ -8,7 +8,7 @@ class State {
     }
 
     update(cb) {
-        this.scale += this.dir * 0.1
+        this.scale += this.dir * scGap
         if (Math.abs(this.scale - this.prevScale) > 1) {
             this.scale = this.prevScale + this.dir
             this.dir = 0
@@ -47,7 +47,7 @@ class Animator {
       if (this.components.length == 1) {
           this.interval = setInterval(() => {
               this.update()
-          }, 50)
+          }, 100)
       }
     }
 
@@ -71,7 +71,7 @@ Vue.component('box', {
         }
     },
 
-    methods : () {
+    methods : {
         start() {
             this.state.startUpdating(() => {
                 animator.add(this)
@@ -87,6 +87,7 @@ Vue.component('box', {
 })
 
 const vm = new Vue({
+    el : '#app',
     data : {
         n : 0
     },
